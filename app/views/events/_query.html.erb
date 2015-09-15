@@ -1,0 +1,141 @@
+<% provide(:title, 'Data Query') %>
+<h1>Reporting#query</h1>
+<p>Find me in app/views/reporting/query.html.erb</p>
+
+
+
+<%= params.each do |p|  %>
+<%= p %>
+<% end %>
+
+
+<%= form_tag("/events", method: "get") do %>
+
+
+<br><br>
+
+
+Application <%= select_tag(:app_name, options_for_select(@uniq_app), multiple:  true ) %>
+User <%= select_tag(:user, options_for_select(@uniq_users), include_blank: true) %>
+Domain    <%= select_tag( :domain, options_for_select(@uniq_domains)) %>
+URL <%= text_field_tag('url') %>
+Keywords <%= text_field_tag('search_words') %>
+<br>
+<div class='col-sm-3'>Start Time
+            <input type='datetime' class="form-control" select name="start_time_stamp" id='start_time_stamp' />
+        </div>
+        <script type="text/javascript">
+
+
+	$(function() {
+    function parseSeconds(stringyDate) {
+        var d = new Date(stringyDate),
+            s = 0;
+        if (stringyDate.length > 0) {
+            s = d.valueOf()   / 1000;
+        }
+        return s;
+    }
+    $("#start_time_stamp").datepicker({
+        altField: '#mod_available_date_id_start',
+        altFormat: '@',
+        defaultDate: "+1w",
+        changeMonth: true,
+        numberOfMonths: 1,
+        onSelect: function(selectedDate) {
+            var d = new Date(selectedDate),
+                s = parseSeconds(selectedDate);
+            if (s > 0) {
+                //display to user
+                $('p#push_start_time').text(d.valueOf() + ' divided by 1000 is ' + s);
+                //store in hidden field.
+                $('input#push_start_time').val(s);
+            } else {
+                $('p#push_start_time').text('No date selected');
+            }
+            //set min date on other picker
+            $("#end_time_stamp").datepicker("option", "minDate", selectedDate);
+        }
+    });
+    $("#end_time_stamp").datepicker({
+        altField: '#mod_available_date_id_finish',
+        altFormat: '@',
+        defaultDate: "+1w",
+        changeMonth: true,
+        numberOfMonths: 1,
+        onSelect: function(selectedDate) {
+            var d = new Date(selectedDate),
+                s = parseSeconds(selectedDate);
+            if (s > 0) {
+                //display to user
+                $('p#push_end_time').text(d.valueOf() + ' divided by 1000 is ' + s);
+                //store in hidden field.
+                $('input#push_end_time').val(s);
+            } else {
+                $('p#push_end_time').text('No date selected');
+            }
+            //set min date on other picker
+            $("#push_end_time").datepicker("option", "maxDate", selectedDate);
+        }
+    });
+});
+
+
+                	
+	</script>
+
+
+
+
+<div class="row">
+<div class='col-sm-3'>End Time
+            <input type='text' class="form-control" name='end_time_stamp' id='end_time_stamp' />
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#end_time_stamp').datepicker( {
+		  altFormat: "yy-mm-dd",
+		  altField: "#push_end_time"
+		});
+            });
+        </script>
+
+</div>
+
+<div class="row">
+<div class='col-sm-3'>
+
+Duration (seconds)  <%= text_field_tag('duration') %>
+
+</div>
+</div>
+<br><br>
+
+<div class="row">
+<div class='col-sm-3'>
+
+<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown9">Group By
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Hour</a></li>
+    <li><a href="#">Day</a></li>
+    <li><a href="#">Month</a></li>
+  </ul>
+</div>
+</div>
+
+
+<%= hidden_field_tag 'push_start_time' %>
+<%= hidden_field_tag 'push_end_time' %>
+
+
+<br><br><br>
+<%= submit_tag "Submit Form" %>
+<br>
+
+
+<% end %>
+
+
+
+

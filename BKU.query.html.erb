@@ -1,0 +1,107 @@
+<% provide(:title, 'Data Query') %>
+<h1>Reporting#query</h1>
+<p>Find me in app/views/reporting/query.html.erb</p>
+
+
+
+<%= form_tag(@events_query) do %>
+
+<%= params.each do |p|  %>
+<%= p  %>
+<% end %>
+
+<br><br>
+
+Application <%= select_tag(:app_name, options_for_select(@uniq_app), multiple:  true ) %> <br>
+<br>
+User <%= select_tag(:user, options_for_select(@uniq_users), include_blank: true) %> <br>
+Domain    <%= select_tag(:domain, options_for_select(@uniq_domains)) %> <br>
+URL <%= text_field(:event, :url, size: 20 ) %>  <br>
+Keywords <%= text_field(:event, :keywords, size: 20 ) %> <br>
+
+
+
+
+
+<br>
+<div class='col-sm-3'>Start Time
+            <input type='text' class="form-control" id='datetimepicker1' />
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker1').datetimepicker();
+            });
+        </script>
+
+</div>
+
+<div class="row">
+<div class='col-sm-3'>End Time
+            <input type='text' class="form-control" id='datetimepicker2' />
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker2').datetimepicker();
+            });
+        </script>
+
+</div>
+
+<div class="row">
+<div class='col-sm-2'>Duration
+            <div class="form-group">
+                <div class='input-group date' id='datetimepicker21'>
+                    <input type='text' class="form-control" />
+                    <span class="input-group-addon">
+                        <span class="glyphicon glyphicon-time"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+            $(function () {
+                $('#datetimepicker21').datetimepicker({
+                    format: 'Hms',
+                    defaultDate: '0'
+                    
+                });
+            });
+        </script>
+</div>
+
+<br>
+
+<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown9">Group By
+  <span class="caret"></span></button>
+  <ul class="dropdown-menu">
+    <li><a href="#">Hour</a></li>
+    <li><a href="#">Day</a></li>
+    <li><a href="#">Month</a></li>
+  </ul>
+</div>
+
+
+<br><br><br>
+<%= submit_tag "Submit Form" %>
+<br>
+
+
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

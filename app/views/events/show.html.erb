@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>App name:</strong>
+  <%= @event.app_name %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @event.user %>
+</p>
+
+<p>
+  <strong>User type:</strong>
+  <%= @event.user_type %>
+</p>
+
+<p>
+  <strong>Tenant:</strong>
+  <%= @event.tenant %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @event.url %>
+</p>
+
+<p>
+  <strong>Domain:</strong>
+  <%= @event.domain %>
+</p>
+
+<p>
+  <strong>Duration:</strong>
+  <%= @event.duration %>
+</p>
+
+<p>
+  <strong>Search words:</strong>
+  <%= @event.search_words %>
+</p>
+
+<p>
+  <strong>Start time stamp:</strong>
+  <%= @event.start_time_stamp %>
+</p>
+
+<p>
+  <strong>End time stamp:</strong>
+  <%= @event.end_time_stamp %>
+</p>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
