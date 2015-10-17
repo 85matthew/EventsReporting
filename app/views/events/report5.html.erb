@@ -1,0 +1,9 @@
+
+<h1>Productivity Report</h1>
+
+<%= column_chart @prod_time %>
+<%= column_chart @events.group_by_day(:start_time_stamp).count%>
+
+<%= render 'query5' %>
+
+<%= link_to 'New Event', new_event_path %>

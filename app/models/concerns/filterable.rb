@@ -15,7 +15,6 @@ module Filterable
       results = self.where(nil) # create an anonymous scope
       filtering_params.each do |key, value|
         results = results.public_send(key, value) if value.present?
-	puts "Found it!!!!"
       end
       results
     end

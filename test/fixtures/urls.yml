@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  domain: MyString
+  keyword: MyString
+  business_relevant: 1
+
+two:
+  domain: MyString
+  keyword: MyString
+  business_relevant: 1

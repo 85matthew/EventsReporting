@@ -1,6 +1,13 @@
 Rails.application.routes.draw do
 
+  resources :urls
+  resources :app_names
   get 'events/query' 	=>	'events#query'
+  get 'events/report1'=>	'events#report1'
+  get 'events/report2'=>	'events#report2'
+  get 'events/report3'=>	'events#report3'
+  get 'events/report4'=>	'events#report4'
+  get 'events/report5'=>	'events#report5'
   resources :events
   resources :events
   root 'events#index'

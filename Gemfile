@@ -3,21 +3,18 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
-gem 'chartkick'
 gem 'pg'
-gem 'groupdate', '~> 2.1.1'
+#gem 'groupdate', '~> 2.1.1'
+gem 'groupdate'
 gem 'active_median', '~> 0.1.0'
-gem 'highcharts-rails', "~> 3.0.0"
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 gem 'bootstrap-will_paginate', '0.0.10'
-gem 'jquery-ui-rails'
-#gem 'momentjs-rails', '>= 2.9.0'
-#gem 'bootstrap3-datetimepicker-rails', '~> 4.15.35'
 gem 'schema_to_scaffold'
+gem 'chartkick'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+#gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -29,6 +26,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

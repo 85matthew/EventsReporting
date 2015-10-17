@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20150923233055) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "app_names", force: :cascade do |t|
+    t.string   "app_name",          null: false
+    t.integer  "business_relevant", null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
 
   create_table "events", force: :cascade do |t|
     t.string   "app_name",         limit: 50, null: false
@@ -27,6 +34,14 @@ ActiveRecord::Schema.define(version: 0) do
     t.text     "search_words"
     t.datetime "start_time_stamp",            null: false
     t.datetime "end_time_stamp",              null: false
+  end
+
+  create_table "urls", force: :cascade do |t|
+    t.string   "domain"
+    t.string   "keyword"
+    t.integer  "business_relevant"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
 end

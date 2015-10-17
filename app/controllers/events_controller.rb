@@ -1,15 +1,37 @@
 class EventsController < ApplicationController
+  include EventsHelper
+
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
-  def query
-    @event = Event.all
+  def report1
 
-     
-    @uniq_domains = Event.select( :domain ).uniq.order(:domain).map{|x| [x.domain]}
-    @uniq_app = Event.select( :app_name ).uniq.order(:app_name).map{|x| [x.app_name]}
-    @uniq_users = Event.select( :user_id ).uniq(:user_id).map{|x| [x.user_id]}
-    @results = Event.select( :user_id)    
+    @events = Event.filter(params.slice(:push_start_time, :push_end_time))
+    build_app_hash(false)
+  end
 
+  def report2
+
+    @events = Event.filter(params.slice(:push_start_time, :push_end_time))
+    build_app_hash(true)
+  end
+
+  def report3
+
+    @events = Event.filter(params.slice(:push_start_time, :push_end_time))
+    build_app_hash(true)
+  end
+
+  def report4
+
+    @events = Event.filter(params.slice(:push_start_time, :push_end_time))
+    sort_urls( get_business_urls() )
+  end
+
+  def report5
+
+    @events = Event.filter(params.slice(:push_start_time, :push_end_time))
+    build_app_hash(true)
+    group_records()
   end
 
 
@@ -17,14 +39,8 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
 
-    logger.info "informational message"
-
     @events = Event.filter(params.slice(:app_name, :user_id, :user_type, :tenant, :url, :domain, :duration, :search_words, :push_start_time, :push_end_time))
 
-
-    ##filtering_params(params).each do |key, value|
-    #  #@events = @events.public_send(key, value) if value.present?
-    ##end
 
     @uniq_domains = Event.select( :domain ).uniq.order(:domain).map{|x| [x.domain]}
     @uniq_app = Event.select( :app_name ).uniq.order(:app_name).map{|x| [x.app_name]}
