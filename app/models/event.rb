@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
-  belongs_to :application
+  belongs_to :app, :class_name => 'App', foreign_key: "app_name"
+  #belongs_to :url, :class_name => 'Url', foreign_key: "url_name
 
   include Filterable
 	

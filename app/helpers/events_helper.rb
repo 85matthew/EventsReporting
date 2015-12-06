@@ -12,7 +12,6 @@ module EventsHelper
  
     browsers = ["Safari", "Flash Player (Safari Internet plug-in)", "QuickTime Plugin (Safari Internet plug-in)", "Firefox", "Firefox Plugin Content (Shockwave Flash)", "Firefox Plugin Content (Silverlight Plug-In)", "Google Chrome" ]
 
-
     @events.each do |event|
 
       if !productivity
@@ -51,7 +50,6 @@ module EventsHelper
       @prod_time = @prod_time + value
   end
 
-
   @non_bus_hash.each do |key, value|
       @non_prod_time = @non_prod_time + value
   end
@@ -66,8 +64,8 @@ module EventsHelper
   ######
   def insert_app_name(passed_name)
  
-    if !AppName.where(:app_name => passed_name).first
-      newRecord = AppName.create(:app_name => passed_name, :business_relevant => 99)
+    if !App.where(:app_name => passed_name).first
+      newRecord = App.create(:app_name => passed_name, :business_relevant => 99)
     end
   end
 
@@ -75,7 +73,7 @@ module EventsHelper
   def is_business_relevant?(event, browsers)
  
     int = 0
-    record = AppName.where(:app_name => event.app_name).first
+    record = App.where(:app_name => event.app_name).first
     if record.nil? || record.business_relevant == 0
       @non_bus_hash[event.app_name.to_sym] = (event.end_time_stamp - event.start_time_stamp)
       return false
@@ -148,12 +146,11 @@ module EventsHelper
   end # end def
 
 
-  #####
-  def group_records()
-    @grouped = @events.group_by_day(:start_time_stamp).sum(:duration) 
-    
+def total_time
+  
+  
 
-  end
+end
 
 
 end

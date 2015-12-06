@@ -1,4 +1,4 @@
-class AppNamesController < ApplicationController
+class AppsController < ApplicationController
   before_action :set_app_name, only: [:show, :edit, :update, :destroy]
 
   # GET /app_names

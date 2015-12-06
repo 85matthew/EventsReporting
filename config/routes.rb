@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   resources :urls
-  resources :app_names
+  resources :apps
   get 'events/query' 	=>	'events#query'
   get 'events/report1'=>	'events#report1'
   get 'events/report2'=>	'events#report2'

@@ -31,7 +31,10 @@ class EventsController < ApplicationController
 
     @events = Event.filter(params.slice(:push_start_time, :push_end_time))
     build_app_hash(true)
-    group_records()
+
+    @bus_relevant = Event.filter(params.slice(:push_start_time, :push_end_time)).joins(:app).where(apps: { business_relevant: 1 } )
+    @non_bus_relevant = Event.filter(params.slice(:push_start_time, :push_end_time)).joins(:app).where(apps: { business_relevant: 0 } )
+    @grouped_data = @bus_relevant.group_by_day(:start_time_stamp)
   end
 
 
